@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+   todoappbackend:
+     image: dmnlfrkn/fullstack_backend
+     ports:
+       - "2222:2222"
+     networks:
+      - todoapp-network
+
+   todoappfrontend:
+     depends_on:
+       - todoappbackend
+     image: dmnlfrkn/fullstack_frontend
+     ports:
+       - "3000:3000"
+     restart: always
+     networks:
+       - todoapp-network
+networks:
+  todoapp-network:
+    driver: bridge
